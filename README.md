@@ -7,8 +7,13 @@ This is a simple tool composed of a ping sweeper script and a man-in-the-middle 
 
 As of 7/26/2019, it only works on a local network's devices but it can (and may) be further improved upon for remote attacks and for ease of use.
 
-Rquires:
+Requires:
 
-Scapy (Packet manipulation tool for computer networks)
+Scapy (Packet manipulation tool for computer networks) 
+   - Link and Info on how to install scapy: https://scapy.readthedocs.io/en/latest/installation.html
+     - Use pip install for easy installation of scapy
+    
 A Debian-derived Linux distro (Has only been tested on Kali)
+
 Python 2.7 (Have only been tested to work on Python 2.7)
+  
