@@ -23,7 +23,7 @@ import subprocess
 import os
 
 # Capture output of the ifconfig command
-ipconf = subprocess.check_output(["ifconfig"])
+ipconf = subprocess.check_output(["/sbin/ifconfig"])
 
 # ...Then just get this machine IP by looking through the string
 thisIP = ipconf[ipconf.index("inet")+5:ipconf.index("netmask")].strip()
@@ -44,8 +44,14 @@ print("Your gateway IP Address is: " + gateway)
 print
 print "Finding Potential Targets..."
 
-# list of the targets to ping.We construvt this by gettting the network where the user resides. We will use string manipulation for this...
-pingTargets = thisIP[:-1:]
+# list of the targets to ping. We construct this by gettting the network where the user resides. We will use string manipulation for this...
+# We create a list of every octet of the target address. As in, We turn ###.###.###.### into [###, ###, ###, ###]
+OctetStringList= thisIP.split('.')
+# We get rid of the last digits of the IP address from our list
+OctetStringList.pop()
+# We then build the ping targets as ###.###.###.?
+
+pingTargets = '.'.join(OctetStringList)
 
 # This list will only contain the succesful pings
 pings = []
@@ -99,7 +105,7 @@ for p in pool:
 	p.join()
 
 # We check the arp table to see fetch our results
-arpOutput = subprocess.check_output(["arp", "-a"])
+arpOutput = subprocess.check_output(["/sbin/arp", "-a"])
 
 # We split the results by line...
 arpOutputSplit = arpOutput.split("\n")
