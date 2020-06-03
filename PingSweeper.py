@@ -1,15 +1,15 @@
 # Copyright (c) 2019 Samuel Caraballo Vazquez
-#  
+#
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
 # in the Software without restriction, including without limitation the rights
 # to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 # copies of the Software, and to permit persons to whom the Software is
 # furnished to do so, subject to the following conditions:
-#  
+#
 # The above copyright notice and this permission notice shall be included in
 # all copies or substantial portions of the Software.
-#  
+#
 # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 # IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 # FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -47,11 +47,12 @@ print "Finding Potential Targets..."
 # list of the targets to ping. We construct this by gettting the network where the user resides. We will use string manipulation for this...
 # We create a list of every octet of the target address. As in, We turn ###.###.###.### into [###, ###, ###, ###]
 OctetStringList= thisIP.split('.')
-# We get rid of the last digits of the IP address from our list
-OctetStringList.pop()
-# We then build the ping targets as ###.###.###.?
 
-pingTargets = '.'.join(OctetStringList)
+# We get rid of the last digits of the IP address from our lis
+OctetStringList.pop()
+
+# We then build the ping targets as ###.###.###.?
+pingTargets = '.'.join(OctetStringList) + '.'
 
 # This list will only contain the succesful pings
 pings = []
